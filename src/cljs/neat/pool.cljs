@@ -1,32 +1,8 @@
 (ns neat.pool
-  (:require [neat.genome :refer [same? genome crossover mutate]]))
+  (:require [neat.genome :refer [same? genome crossover mutate]]
+            [neat.default :refer [default-pool default-sp]]))
 
 ;; NOTE: species is plural and singular, use spp and sp
-
-(def default-settings
-  {:stale-species 15
-   :population 10
-   :inputs 26 ;; stimuli + 1
-   :outputs 12
-   :max-nodes 200
-   :crossover 0.5})
-
-(def default-pool
-  {:species []
-   :generation 0
-   :current-species 0
-   :current-genome 0
-   :frame 0
-   :max-fitness 0
-   :settings nil})
-
-(def default-sp
-  {:top-fitness 0
-   :staleness 0
-   :genomes []
-   :avg-rank 0})
-
-
 
 (declare add-genome)
 
@@ -53,7 +29,7 @@
 
 ;; Cull
 
-(declare staleness ranked avg-rank total-avg-rank)
+(declare staleness ranked avg-rank total-avg-rank population)
 
 (defn cull-stale [pool]
   (let [{:keys [max-fitness settings] spp :species} pool
@@ -100,9 +76,12 @@
         mutate)))
 
 (defn fill-avg
-  "breeds children that are above the average"
-  [_]
-  nil)
+  [pool]
+  (let [settings (:settings pool)]
+    (->> pool
+         :species
+         (map (fn [sp] (breed-child sp settings)))
+         (into []))))
 
 (defn rand-child
   [pool]
