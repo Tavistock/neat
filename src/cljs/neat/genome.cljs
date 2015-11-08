@@ -25,10 +25,9 @@
 (def default-genome
   {:genes []
    :fitness 0
-   :adjusted-fitness 0
    :network {}
    :max-neuron (:inputs default-settings)
-   :global-rank 0
+   :rank 0
    :mutate default-mutate
    :settings default-settings})
 
