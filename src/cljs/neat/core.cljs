@@ -1,10 +1,11 @@
 (ns neat.core
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [neat.network]
-            [neat.genome]
-            [neat.pool]
-            [neat.util]
+            [neat.network :as n]
+            [neat.genome :as g]
+            [neat.pool :as p]
+            [neat.default :as d]
+            [neat.util :as u]
             ))
 
 (enable-console-print!)

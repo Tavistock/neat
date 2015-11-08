@@ -2,17 +2,9 @@
   (:require [neat.util :refer [sigmoid]]))
 
 ;; Api
-(comment
-  (let [input [1. 1. 1.]
-        settings {:max-nodes 10
-                  :inputs 4
-                  :outputs 4}
-        genome {:genes [{:enabled true :into 1 :out 2 :weight 1}
-                        {:enabled true :into 2 :out 12 :weight 1}]}]
-    (network genome settings) ;-> network
-    (step network input settings) ;-> next-network
-    (outputs next-network settings) ;-> ouputs
-    ))
+#_(network genome settings) ;-> network
+#_(step network input settings) ;-> next-network
+#_(outputs next-network settings) ;-> output
 
 
 (defn neuron []

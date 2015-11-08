@@ -1,51 +1,20 @@
 (ns neat.genome
   (:require [clojure.set :refer [union difference]]
-            [neat.util :refer [uuid]]))
-
-(def delta
-  {:disjunct 2.0
-   :weights 0.4
-   :threshold 1.0})
-
-(def default-mutate
-  {:connections 0.25
-   :link 2.0
-   :bias 0.4
-   :node 0.5
-   :enable 0.2
-   :disable 0.4
-   :step 0.1
-   :perturb 0.90})
-
-(def default-settings
-  {:inputs 26
-   :outputs 12
-   :max-nodes 200})
-
-(def default-genome
-  {:genes []
-   :fitness 0
-   :network {}
-   :max-neuron (:inputs default-settings)
-   :rank 0
-   :mutate default-mutate
-   :settings default-settings})
+            [neat.util :refer [uuid]]
+            [neat.default :refer [delta default-mutate default-genome]]))
 
 (defn base
-  ([] default-genome)
-  ([settings] (assoc default-genome
-                     :settings settings
-                     :max-neurons (:inputs settings)))
-  ([settings mutates] (assoc default-genome
-                            :settings settings
-                            :max-neurons (:inputs settings)
-                            :mutate mutates)))
-(declare mutate)
+  [settings mutates]
+  (assoc default-genome
+         :settings settings
+         :max-neurons (:inputs settings)
+         :mutate mutates))
+
+(declare mutate base)
 
 (defn genome
-  ([] (mutate (base)))
-  ([s] (mutate (base s)))
-  ([s m] (mutate (base s m))))
+  ([settings] (genome settings default-mutate))
+  ([settings mutate] (mutate (base settings mutate))))
 
 (defn coin-flip []
   (rand-nth [true false]))
@@ -82,7 +51,8 @@
         neuron {:out n2
                 :into (if force-bias? (:inputs settings) n1)
                 :innovation (uuid)
-                :weight (- (* 4 (rand)) 2)}]
+                :weight (- (* 4 (rand)) 2)
+                :enabled true}]
     (if (contains-link? genes neuron)
       genome
       (update-in genome [:genes] conj neuron))))
@@ -109,13 +79,13 @@
     genome
     (let [n (rand-int (count (:genes genome)))
           gene (nth (:genes genome) n)
-          new-max (inc (:max-neuron genome))
+          new-max (inc (:max-neurons genome))
           loc [:genes n :enabled]]
       (if (not (get-in genome loc))
         genome
         (-> genome
             (update-in loc not)
-            (assoc :max-neuron new-max)
+            (assoc :max-neurons new-max)
             (update-in [:genes] conj
                        (merge gene {:out new-max
                                     :weight 1.0
@@ -202,19 +172,21 @@
 (defn crossover
   [g1 g2 settings]
   (if (> (:fitness g2) (:fitness g1))
-    (crossover g2 g1)
+    (crossover g2 g1 settings)
     (let [innov (->> (:genes g2)
-                      (map #({(:innovation %) %}))
+                      (map #(hash-map (:innovation %) %))
                       (reduce merge))]
-      (as-> (base settings) $
+      (as-> (genome settings) $
            (reduce
             (fn [genome gene]
               (let [gene2 (get innov (:innovation gene))]
                 (if (and gene2
                          (:enabled gene2)
                          (coin-flip))
-                  (update-in genome [:genes] conj gene2)
-                  (update-in genome [:genes] conj gene))))
+                  (update genome :genes conj gene2)
+                  (update genome :genes conj gene))))
             $
-            g1)
+            (:genes g1))
            (assoc $ :mutate (:mutate g1))))))
+
+(comment (crossover (genome) (genome) default-settings))
