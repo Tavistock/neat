@@ -1,6 +1,6 @@
 (ns neat.pool
   (:require [neat.genome :refer [same? genome crossover mutate]]
-            [neat.default :refer [default-pool default-sp]]))
+            [neat.settings :refer [default-pool default-sp]]))
 
 ;; NOTE: species is plural and singular, use spp and sp
 

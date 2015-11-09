@@ -1,4 +1,4 @@
-(ns neat.default)
+(ns neat.settings)
 
 (def delta
   {:disjunct 2.0
@@ -23,7 +23,6 @@
    :rank 0
    :mutate default-mutate
    :settings default-settings})
-
 
 (def default-settings
   {:stale-species 15
