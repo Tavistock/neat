@@ -1,7 +1,7 @@
 (ns neat.genome
   (:require [clojure.set :refer [union difference]]
             [neat.util :refer [uuid]]
-            [neat.default :refer [delta default-mutate default-genome]]))
+            [neat.settings :refer [delta default-mutate default-genome]]))
 
 (defn base
   [settings mutates]
