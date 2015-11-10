@@ -15,6 +15,14 @@
    :step 0.1
    :perturb 0.90})
 
+(def default-settings
+  {:stale-species 15
+   :population 10
+   :inputs 26 ;; stimuli + 1
+   :outputs 12
+   :max-nodes 200
+   :crossover 0.5})
+
 (def default-genome
   {:genes []
    :fitness 0
@@ -23,14 +31,6 @@
    :rank 0
    :mutate default-mutate
    :settings default-settings})
-
-(def default-settings
-  {:stale-species 15
-   :population 10
-   :inputs 26 ;; stimuli + 1
-   :outputs 12
-   :max-nodes 200
-   :crossover 0.5})
 
 (def default-pool
   {:species []

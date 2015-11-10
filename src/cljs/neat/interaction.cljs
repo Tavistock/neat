@@ -1,5 +1,9 @@
 (ns neat.interaction
-  (:require [neat.network :as n]))
+  (:require [cljs.core.async :refer [timeout <! >!]]
+            [neat.network :as n]
+            [neat.state :refer [app-state]])
+  (:require-macros
+   [cljs.core.async.macros :refer [go]]))
 
 (def flappybird
   {:read nil
@@ -7,23 +11,39 @@
    :game-over? nil
    :start! nil
    :restart! nil
-   :controls nil})
+   :controls nil
+   :commands nil})
 
-(defn runner
+(defn interact
   [interaction]
-  (let [{:keys [read score game-over? start! restart! controls]} interaction]
-    (fn [network game]
-      (do (start! game)
+  (let [{:keys [wait commands
+                read score
+                game-over? start!
+                restart! controls]} interaction]
+    (fn [network]
+      (go (<! (start!))
           (loop [cur-score 0
                  network network]
-            (if (game-over? game)
-              (do (restart! game)
-                  cur-score)
-              (let [inputs (read game)
+            (swap! app-state assoc :fitness cur-score)
+            (if (game-over?)
+              (do
+                (<! (restart!))
+                cur-score)
+              (let [inputs (read)
                     network* (n/step network inputs)
                     outputs (n/outputs network*)
-                    commands (->> (map #(if %1 %2 nil) outputs controls)
-                                  (filter identity))]
-                (do (dorun (map (fn [cmd] (cmd game)) commands))
-                    (recur (score cur-score game) network*)))))))))
+                      cmds (commands outputs controls)]
+                (do (swap! app-state assoc :vision inputs)
+                  (dorun (map #(%) cmds))
+                      (<! (timeout wait))
+                      (recur (score cur-score) network*)))))))))
 
+(defn commands
+  [outputs controls]
+  (->> (map #(if %1 %2 nil) outputs controls)
+       (filter identity)))
+
+(defn debug-commands
+  [o c]
+  (do (prn o)
+      (commands o c)))

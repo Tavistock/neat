@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+      <title>Floppy Bird</title>
+      <!-- Style sheets -->
+      <link href="floppy/css/reset.css" rel="stylesheet">
+      <link href="floppy/css/main.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+     <div id="app"></div>
+      <div id="gamecontainer">
+         <div id="gamescreen">
+            <div id="sky" class="animated">
+               <div id="flyarea">
+                  <div id="ceiling" class="animated"></div>
+                  <!-- This is the flying and pipe area container -->
+                  <div id="player" class="bird animated"></div>
+
+                  <div id="bigscore"></div>
+
+                  <div id="splash"></div>
+
+                  <div id="scoreboard">
+                     <div id="medal"></div>
+                     <div id="currentscore"></div>
+                     <div id="highscore"></div>
+                     <div id="replay"><img src="floppy/assets/replay.png" alt="replay"></div>
+                  </div>
+
+                  <!-- Pipes go here! -->
+               </div>
+            </div>
+            <div id="land" class="animated"><div id="debug"></div></div>
+         </div>
+      </div>
+      <div class="boundingbox" id="playerbox"></div>
+      <div class="boundingbox" id="pipebox"></div>
+
+      <script src="floppy/js/jquery.min.js"></script>
+      <script src="floppy/js/jquery.transit.min.js"></script>
+      <script src="floppy/js/buzz.min.js"></script>
+      <script src="floppy/js/main.js"></script>
+
+      <!-- inject neat! -->
+      <script src="/js/app.js" type="text/javascript"></script>
+   </body>
+</html>
