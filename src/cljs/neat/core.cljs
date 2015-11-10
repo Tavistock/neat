@@ -1,6 +1,5 @@
 (ns neat.core
   (:require
-   [cljs.core.async :refer [chan <!]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
    [neat.network :as n]
@@ -9,38 +8,42 @@
    [neat.interaction :as i]
    [neat.settings :as s]
    [neat.runner :as r]
-   [neat.flappy :as f]
+   [neat.floppy :as f]
    [neat.state :refer [app-state]]
-   [neat.util :as u])
-  (:require-macros
-   [cljs.core.async.macros :refer [go-loop go]]))
+   [neat.util :as u]))
 
 (enable-console-print!)
 
-(declare vision)
+(declare viz)
 
 (defn main []
   (om/root
-    (fn [app owner]
-      (reify
-        om/IRender
-        (render [_]
-          (dom/div nil
-                   (dom/p nil (str "loc: " (clj->js (:loc app))))
-                   (dom/p nil (str "current-fitness: " (:fitness app)))
-                   (dom/p nil (str "generation: " (:generation (:pool app))))
-                   (om/build vision {:vision (:vision app) :x 15})))))
-    app-state
-    {:target (. js/document (getElementById "app"))}))
+   viz
+   app-state
+   {:target (. js/document (getElementById "app"))}))
 
 (defn vision
-  [app owner]
+  [data]
+  (dom/div nil
+           (dom/p nil "Vision: ")
+           (apply dom/div nil
+                  (->> (:vision data)
+                       (partition (:x data))
+                       (map #(dom/p nil (clj->js %)))))))
+
+(defn viz [app owner]
   (reify
     om/IRender
     (render [_]
-      (dom/div nil
-               (dom/p nil "vision: ")
-               (apply dom/div nil
-                      (->> (:vision app)
-                           (partition (:x app))
-                           (map #(dom/p nil (clj->js %)))))))))
+      (let [loc (:loc app)
+            [_ genome _ species] loc
+            fitness (:fitness app)
+            generation (:generation (:pool app))
+            app-vision {:vision (:vision app) :x 15}]
+        (dom/div nil
+                 (dom/p nil (str "Current =>"))
+                 (dom/p nil (str "Species: " species))
+                 (dom/p nil (str "Genome: " genome))
+                 (dom/p nil (str "Fitness: " fitness))
+                 (dom/p nil (str "Generation: " generation))
+                 (vision app-vision))))))
