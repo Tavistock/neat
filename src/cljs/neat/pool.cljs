@@ -83,6 +83,7 @@
   (let [settings (:settings pool)]
     (->> pool
          :species
+         (filter #(rand-nth [true false]))
          (map (fn [sp] (breed-child sp settings)))
          (into []))))
 
