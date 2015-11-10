@@ -1,6 +1,6 @@
 (ns neat.genome
   (:require [clojure.set :refer [union difference]]
-            [neat.util :refer [uuid]]
+            [neat.util :refer [rand-id]]
             [neat.settings :refer [delta default-mutate default-genome]]))
 
 (defn base
@@ -14,7 +14,7 @@
 
 (defn genome
   ([settings] (genome settings default-mutate))
-  ([settings mutate] (mutate (base settings mutate))))
+  ([settings mutates] (mutate (base settings mutates))))
 
 (defn coin-flip []
   (rand-nth [true false]))
@@ -50,7 +50,7 @@
         n2 (rand-neuron genes false settings)
         neuron {:out n2
                 :into (if force-bias? (:inputs settings) n1)
-                :innovation (uuid)
+                :innovation (rand-id)
                 :weight (- (* 4 (rand)) 2)
                 :enabled true}]
     (if (contains-link? genes neuron)
@@ -89,10 +89,10 @@
             (update-in [:genes] conj
                        (merge gene {:out new-max
                                     :weight 1.0
-                                    :innovation (uuid)}))
+                                    :innovation (rand-id)}))
             (update-in [:genes] conj
                        (merge gene {:into new-max
-                                    :innovation (uuid)})))))))
+                                    :innovation (rand-id)})))))))
 
 (defn mutate-point [genome]
   (let [{:keys [perturb step]} (:mutate genome)]

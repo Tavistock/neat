@@ -4,16 +4,18 @@
 
 ;; NOTE: species is plural and singular, use spp and sp
 
-(declare add-genome)
+(declare add-genome vec-pool)
 
 (defn pool [settings]
-  (assoc default-pool
-         :settings settings
-         :species (->> settings
-                       :population
-                       (range)
-                       (map #(genome settings))
-                       (reduce add-genome []))))
+  (-> default-pool
+      (assoc
+       :settings settings
+       :species (->> settings
+                     :population
+                     (range)
+                     (map #(genome settings))
+                     (reduce add-genome [])))
+      vec-pool))
 
 (declare cull cull-stale cull-weak fill-avg fill-rand)
 
@@ -25,7 +27,8 @@
         children (fill-rand top-pool avg-children)]
     (-> top-pool
         (update :species (fn [spp] (reduce add-genome spp children)))
-        (update :generation inc))))
+        (update :generation inc)
+        vec-pool)))
 
 ;; Cull
 
@@ -140,7 +143,7 @@
 (defn ranked [pool]
   (let [ranks (->> pool
                    fitness-vecs
-                   (sort-by second >) ;; REVIEW
+                   (sort-by second <)
                    (map first)
                    (map-indexed vector))
         pool* (vec-pool pool)]

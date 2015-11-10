@@ -1,34 +1,23 @@
 (ns neat.core
-  (:require [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]
-            [neat.network :as n]
-            [neat.genome :as g]
-            [neat.pool :as p]
-            [neat.interaction :as i]
-            [neat.settings :as s]
-            [neat.util :as u]
-            ))
-
-(comment (let [settings {:stale-species 15
-                         :population 20
-                         :inputs 5
-                         :outputs 1
-                         :max-nodes 20
-                         :cross-over 0.5}
-               interactions {:read (fn [_] [1 1 1 1])
-                             :score (fn [cur _] (inc cur))
-                             :game-over? (fn [_] (> (rand-int 10) 1))
-                             :start! (fn [_] nil)
-                             :restart! (fn [_] nil)
-                             :controls [(fn [_] (prn "hello"))]}
-               pool (p/pool settings)
-               genome (get-in pool [:species 0 :genomes 0])
-               network (n/network genome settings)
-               runner (i/runner interactions)]))
+  (:require
+   [cljs.core.async :refer [chan <!]]
+   [om.core :as om :include-macros true]
+   [om.dom :as dom :include-macros true]
+   [neat.network :as n]
+   [neat.genome :as g]
+   [neat.pool :as p]
+   [neat.interaction :as i]
+   [neat.settings :as s]
+   [neat.runner :as r]
+   [neat.flappy :as f]
+   [neat.state :refer [app-state]]
+   [neat.util :as u])
+  (:require-macros
+   [cljs.core.async.macros :refer [go-loop go]]))
 
 (enable-console-print!)
 
-(defonce app-state (atom {:text "Hello Chestnut!"}))
+(declare vision)
 
 (defn main []
   (om/root
@@ -36,6 +25,22 @@
       (reify
         om/IRender
         (render [_]
-          (dom/h1 nil (:text app)))))
+          (dom/div nil
+                   (dom/p nil (str "loc: " (clj->js (:loc app))))
+                   (dom/p nil (str "current-fitness: " (:fitness app)))
+                   (dom/p nil (str "generation: " (:generation (:pool app))))
+                   (om/build vision {:vision (:vision app) :x 15})))))
     app-state
     {:target (. js/document (getElementById "app"))}))
+
+(defn vision
+  [app owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/div nil
+               (dom/p nil "vision: ")
+               (apply dom/div nil
+                      (->> (:vision app)
+                           (partition (:x app))
+                           (map #(dom/p nil (clj->js %)))))))))
