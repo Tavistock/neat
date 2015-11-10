@@ -9,7 +9,7 @@
 
 (def settings
   {:stale-species 15
-   :population 300
+   :population 50
    :inputs 301
    :outputs 1
    :max-nodes 600
@@ -39,5 +39,7 @@
    :commands i/commands
    :wait 500})
 
-(if (js/document.getElementById "floppy")
+(def floppy? (js/document.getElementById "floppy"))
+
+(if floppy?
   (defonce run!! (r/runner (p/pool settings) interactions)))
