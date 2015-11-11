@@ -80,7 +80,4 @@
                        :aot :all
                        :main neat.server
                        :cljsbuild {:builds {:app
-                                            {:source-paths ["env/prod/cljs"]
-                                             :compiler
-                                             {:optimizations :advanced
-                                              :pretty-print false}}}}}})
+                                            {:source-paths ["env/prod/cljs"]}}}}})
