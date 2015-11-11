@@ -13,6 +13,10 @@ of inputs to vector of outputs.
 
 An example is included that evolves a genome to play [floppy bird](http://localhost:10555/floppy).
 
+![](floppy.gif)
+
+Be warned it takes a few generations to stop hugging the roof!
+
 Check out the tips for [development](DEVELOPMENT.md)
 
 ## License
