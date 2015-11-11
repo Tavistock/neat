@@ -5,7 +5,7 @@
   (:require-macros
    [cljs.core.async.macros :refer [go]]))
 
-(def flappybird
+(def interact-map
   {:read nil
    :score nil
    :game-over? nil
@@ -22,21 +22,23 @@
                 restart! controls]} interaction]
     (fn [network]
       (go (<! (start!))
-          (loop [cur-score 0
+          (loop [fitness 0
                  network network]
-            (swap! app-state assoc :fitness cur-score)
+            (swap! app-state assoc :fitness fitness)
             (if (game-over?)
               (do
                 (<! (restart!))
-                cur-score)
+                fitness)
               (let [inputs (read)
                     network* (n/step network inputs)
                     outputs (n/outputs network*)
                       cmds (commands outputs controls)]
-                (do (swap! app-state assoc :vision inputs)
+                (do (swap! app-state assoc
+                           :inputs inputs
+                           :outputs outputs)
                   (dorun (map #(%) cmds))
                       (<! (timeout wait))
-                      (recur (score cur-score) network*)))))))))
+                      (recur (score fitness) network*)))))))))
 
 (defn commands
   [outputs controls]

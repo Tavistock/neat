@@ -17,6 +17,7 @@
                  [compojure "1.4.0"]
                  [enlive "1.1.6"]
                  [org.omcljs/om "0.9.0"]
+                 [sablono "0.4.0"]
                  [environ "1.0.0"]]
 
   :plugins [[lein-cljsbuild "1.0.5"]
