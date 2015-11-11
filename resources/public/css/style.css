@@ -5,3 +5,19 @@ h1 {
 #app {
   color: black;
 }
+
+circle.neg {
+    fill: red;
+}
+
+circle.zero {
+    fill: white;
+}
+
+circle.pos {
+    fill: green;
+}
+
+svg.vision {
+    backGround-color: grey;
+}
