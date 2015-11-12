@@ -11,13 +11,14 @@ My implementation makes a pool of genomes organized by species that
 can be transformed into networks. These networks transform a vector
 of inputs to vector of outputs.
 
-An example is included that evolves a genome to play [floppy bird](http://localhost:10555/floppy).
+
+## Example
+
+An example is included that evolves a genome. Just use (run) in a local repl
+and point your browser at [localhost:10555/floppy](http://localhost:10555/floppy).
 
 ![](floppy.gif)
-
 Be warned it takes a few generations to stop hugging the roof!
-
-Check out the tips for [development](DEVELOPMENT.md)
 
 ## License
 
