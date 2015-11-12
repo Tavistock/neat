@@ -14,7 +14,7 @@
 
 (defn genome
   ([settings] (genome settings default-mutate))
-  ([settings mutates] (mutates (base settings mutates))))
+  ([settings mutates] (mutate (base settings mutates))))
 
 (defn coin-flip []
   (rand-nth [true false]))

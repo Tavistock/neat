@@ -26,19 +26,20 @@
                  network network]
             (swap! app-state assoc :fitness fitness)
             (if (game-over?)
-              (do
-                (<! (restart!))
-                fitness)
+              (do (<! (restart!))
+                  fitness)
               (let [inputs (read)
                     network* (n/step network inputs)
                     outputs (n/outputs network*)
-                      cmds (commands outputs controls)]
+                    cmds (commands outputs controls)]
                 (do (swap! app-state assoc
+                           :network network*
                            :inputs inputs
                            :outputs outputs)
-                  (dorun (map #(%) cmds))
-                      (<! (timeout wait))
-                      (recur (score fitness) network*)))))))))
+                    (swap! app-state update-in [:ui :frame] inc)
+                    (dorun (map #(%) cmds))
+                    (<! (timeout wait))
+                    (recur (score fitness) network*)))))))))
 
 (defn commands
   [outputs controls]

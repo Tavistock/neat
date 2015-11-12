@@ -10,7 +10,7 @@
    :population 50
    :inputs 301
    :outputs 1
-   :max-nodes 600
+   :max-nodes 601
    :cross-over 0.5})
 
 (defn locate

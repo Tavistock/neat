@@ -61,7 +61,7 @@
    (range (count neurons))))
 
 (defn step [network inputs]
-  (let [inputs (conj inputs 1)
+  (let [inputs (conj (vec inputs) 1)
         settings (:settings network)]
     (if (not= (count inputs) (:inputs settings))
       (print "Incorrect number of neural network inputs.")

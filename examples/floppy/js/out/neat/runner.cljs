@@ -15,16 +15,16 @@
   (let [interact (i/interact interactions)]
     (go-loop [pool pool
               loc [:species 0 :genomes 0]]
-      (swap! app-state assoc :pool pool)
       (let [genome (get-in pool loc)
-            network (n/network genome (:settings pool))]
+            network (n/network genome (:settings pool))
+            fitness (<! (interact network))
+            next-pool (update-in pool loc assoc :fitness fitness)
+            next-loc (next-loc next-pool loc)]
+        (swap! app-state assoc :pool pool)
         (swap! app-state assoc :loc loc)
-        (let [fitness (<! (interact network))
-              pool (update-in pool loc assoc :fitness fitness)
-              next-loc (next-loc pool loc)]
-          (if next-loc
-            (recur pool next-loc)
-            (recur (p/step pool) [:species 0 :genomes 0])))))))
+        (if next-loc
+          (recur next-pool next-loc)
+          (recur (p/step next-pool) [:species 0 :genomes 0]))))))
 
 (defn next-loc
   [pool [_ sp _ gn]]

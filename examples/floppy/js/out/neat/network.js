@@ -75,7 +75,7 @@ return neurons__$1;
 }),neurons,cljs.core.range.cljs$core$IFn$_invoke$arity$1(cljs.core.count(neurons)));
 });
 neat.network.step = (function neat$network$step(network,inputs){
-var inputs__$1 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(inputs,(1));
+var inputs__$1 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(cljs.core.vec(inputs),(1));
 var settings = cljs.core.cst$kw$settings.cljs$core$IFn$_invoke$arity$1(network);
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.count(inputs__$1),cljs.core.cst$kw$inputs.cljs$core$IFn$_invoke$arity$1(settings))){
 return cljs.core.print.cljs$core$IFn$_invoke$arity$variadic(cljs.core.array_seq(["Incorrect number of neural network inputs."], 0));

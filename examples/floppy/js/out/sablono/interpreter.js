@@ -33,7 +33,7 @@ throw cljs.core.missing_protocol("IInterpreter.interpret",this$);
 });
 
 sablono.interpreter.wrap_form_element = (function sablono$interpreter$wrap_form_element(ctor,display_name){
-var G__21313 = (function (){var G__21317 = {"getDisplayName": (function (){
+var G__21094 = (function (){var G__21098 = {"getDisplayName": (function (){
 return cljs.core.name(display_name);
 }), "getInitialState": (function (){
 var this$ = this;
@@ -54,30 +54,30 @@ return this$.setState({"value": (new_props["value"])});
 }), "render": (function (){
 var this$ = this;
 var props = {};
-var G__21318_21321 = props;
-var G__21319_21322 = this$.props;
-var G__21320_21323 = {"value": (this$.state["value"]), "onChange": (this$["onChange"]), "children": (this$.props["children"])};
-goog.object.extend(G__21318_21321,G__21319_21322,G__21320_21323);
+var G__21099_21102 = props;
+var G__21100_21103 = this$.props;
+var G__21101_21104 = {"value": (this$.state["value"]), "onChange": (this$["onChange"]), "children": (this$.props["children"])};
+goog.object.extend(G__21099_21102,G__21100_21103,G__21101_21104);
 
 return (ctor.cljs$core$IFn$_invoke$arity$1 ? ctor.cljs$core$IFn$_invoke$arity$1(props) : ctor.call(null,props));
 })};
-return React.createClass(G__21317);
+return React.createClass(G__21098);
 })();
-return React.createFactory(G__21313);
+return React.createFactory(G__21094);
 });
 sablono.interpreter.input = sablono.interpreter.wrap_form_element(React.DOM.input,"input");
 sablono.interpreter.option = sablono.interpreter.wrap_form_element(React.DOM.option,"option");
 sablono.interpreter.textarea = sablono.interpreter.wrap_form_element(React.DOM.textarea,"textarea");
 sablono.interpreter.create_element = (function sablono$interpreter$create_element(var_args){
 var args__5626__auto__ = [];
-var len__5619__auto___21327 = arguments.length;
-var i__5620__auto___21328 = (0);
+var len__5619__auto___21108 = arguments.length;
+var i__5620__auto___21109 = (0);
 while(true){
-if((i__5620__auto___21328 < len__5619__auto___21327)){
-args__5626__auto__.push((arguments[i__5620__auto___21328]));
+if((i__5620__auto___21109 < len__5619__auto___21108)){
+args__5626__auto__.push((arguments[i__5620__auto___21109]));
 
-var G__21329 = (i__5620__auto___21328 + (1));
-i__5620__auto___21328 = G__21329;
+var G__21110 = (i__5620__auto___21109 + (1));
+i__5620__auto___21109 = G__21110;
 continue;
 } else {
 }
@@ -94,12 +94,12 @@ return (cljs.core.truth_(sablono.util.wrapped_type_QMARK_(type))?cljs.core.get.c
 
 sablono.interpreter.create_element.cljs$lang$maxFixedArity = (2);
 
-sablono.interpreter.create_element.cljs$lang$applyTo = (function (seq21324){
-var G__21325 = cljs.core.first(seq21324);
-var seq21324__$1 = cljs.core.next(seq21324);
-var G__21326 = cljs.core.first(seq21324__$1);
-var seq21324__$2 = cljs.core.next(seq21324__$1);
-return sablono.interpreter.create_element.cljs$core$IFn$_invoke$arity$variadic(G__21325,G__21326,seq21324__$2);
+sablono.interpreter.create_element.cljs$lang$applyTo = (function (seq21105){
+var G__21106 = cljs.core.first(seq21105);
+var seq21105__$1 = cljs.core.next(seq21105);
+var G__21107 = cljs.core.first(seq21105__$1);
+var seq21105__$2 = cljs.core.next(seq21105__$1);
+return sablono.interpreter.create_element.cljs$core$IFn$_invoke$arity$variadic(G__21106,G__21107,seq21105__$2);
 });
 sablono.interpreter.attributes = (function sablono$interpreter$attributes(attrs){
 var attrs__$1 = cljs.core.clj__GT_js(sablono.util.html_to_dom_attrs(attrs));
@@ -117,10 +117,10 @@ return attrs__$1;
  * Render an element vector as a HTML element.
  */
 sablono.interpreter.element = (function sablono$interpreter$element(element__$1){
-var vec__21331 = sablono.util.normalize_element(element__$1);
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21331,(0),null);
-var attrs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21331,(1),null);
-var content = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21331,(2),null);
+var vec__21112 = sablono.util.normalize_element(element__$1);
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21112,(0),null);
+var attrs = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21112,(1),null);
+var content = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__21112,(2),null);
 var js_attrs = sablono.interpreter.attributes(attrs);
 if((cljs.core.sequential_QMARK_(content)) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2((1),cljs.core.count(content)))){
 return sablono.interpreter.create_element.cljs$core$IFn$_invoke$arity$variadic(type,js_attrs,cljs.core.array_seq([sablono.interpreter.interpret(cljs.core.first(content))], 0));

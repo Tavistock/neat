@@ -7,10 +7,10 @@ neat.pool.add_genome;
 
 neat.pool.vec_pool;
 neat.pool.pool = (function neat$pool$pool(settings){
-var G__11111 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(neat.settings.default_pool,cljs.core.cst$kw$settings,settings,cljs.core.array_seq([cljs.core.cst$kw$species,cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(neat.pool.add_genome,cljs.core.PersistentVector.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (){
+var G__11119 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(neat.settings.default_pool,cljs.core.cst$kw$settings,settings,cljs.core.array_seq([cljs.core.cst$kw$species,cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(neat.pool.add_genome,cljs.core.PersistentVector.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (){
 return neat.genome.genome.cljs$core$IFn$_invoke$arity$1(settings);
 }),cljs.core.range.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$population.cljs$core$IFn$_invoke$arity$1(settings))))], 0));
-return (neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1 ? neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1(G__11111) : neat.pool.vec_pool.call(null,G__11111));
+return (neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1 ? neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1(G__11119) : neat.pool.vec_pool.call(null,G__11119));
 });
 neat.pool.cull;
 
@@ -22,20 +22,20 @@ neat.pool.fill_avg;
 
 neat.pool.fill_rand;
 neat.pool.step = (function neat$pool$step(pool){
-var culled_pool = (function (){var G__11117 = (function (){var G__11118 = (neat.pool.cull.cljs$core$IFn$_invoke$arity$2 ? neat.pool.cull.cljs$core$IFn$_invoke$arity$2(false,pool) : neat.pool.cull.call(null,false,pool));
-return (neat.pool.cull_stale.cljs$core$IFn$_invoke$arity$1 ? neat.pool.cull_stale.cljs$core$IFn$_invoke$arity$1(G__11118) : neat.pool.cull_stale.call(null,G__11118));
+var culled_pool = (function (){var G__11125 = (function (){var G__11126 = (neat.pool.cull.cljs$core$IFn$_invoke$arity$2 ? neat.pool.cull.cljs$core$IFn$_invoke$arity$2(false,pool) : neat.pool.cull.call(null,false,pool));
+return (neat.pool.cull_stale.cljs$core$IFn$_invoke$arity$1 ? neat.pool.cull_stale.cljs$core$IFn$_invoke$arity$1(G__11126) : neat.pool.cull_stale.call(null,G__11126));
 })();
-return (neat.pool.cull_weak.cljs$core$IFn$_invoke$arity$1 ? neat.pool.cull_weak.cljs$core$IFn$_invoke$arity$1(G__11117) : neat.pool.cull_weak.call(null,G__11117));
+return (neat.pool.cull_weak.cljs$core$IFn$_invoke$arity$1 ? neat.pool.cull_weak.cljs$core$IFn$_invoke$arity$1(G__11125) : neat.pool.cull_weak.call(null,G__11125));
 })();
 var avg_children = (neat.pool.fill_avg.cljs$core$IFn$_invoke$arity$1 ? neat.pool.fill_avg.cljs$core$IFn$_invoke$arity$1(culled_pool) : neat.pool.fill_avg.call(null,culled_pool));
 var top_pool = (neat.pool.cull.cljs$core$IFn$_invoke$arity$2 ? neat.pool.cull.cljs$core$IFn$_invoke$arity$2(true,culled_pool) : neat.pool.cull.call(null,true,culled_pool));
 var children = (neat.pool.fill_rand.cljs$core$IFn$_invoke$arity$2 ? neat.pool.fill_rand.cljs$core$IFn$_invoke$arity$2(top_pool,avg_children) : neat.pool.fill_rand.call(null,top_pool,avg_children));
-var G__11119 = cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(top_pool,cljs.core.cst$kw$species,((function (culled_pool,avg_children,top_pool,children){
+var G__11127 = cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(top_pool,cljs.core.cst$kw$species,((function (culled_pool,avg_children,top_pool,children){
 return (function (spp){
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(neat.pool.add_genome,spp,children);
 });})(culled_pool,avg_children,top_pool,children))
 ),cljs.core.cst$kw$generation,cljs.core.inc);
-return (neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1 ? neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1(G__11119) : neat.pool.vec_pool.call(null,G__11119));
+return (neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1 ? neat.pool.vec_pool.cljs$core$IFn$_invoke$arity$1(G__11127) : neat.pool.vec_pool.call(null,G__11127));
 });
 neat.pool.staleness;
 
@@ -47,29 +47,29 @@ neat.pool.total_avg_rank;
 
 neat.pool.population;
 neat.pool.cull_stale = (function neat$pool$cull_stale(pool){
-var map__11127 = pool;
-var map__11127__$1 = ((((!((map__11127 == null)))?((((map__11127.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11127.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11127):map__11127);
-var spp = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11127__$1,cljs.core.cst$kw$species);
-var max_fitness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11127__$1,cljs.core.cst$kw$max_DASH_fitness);
-var settings = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11127__$1,cljs.core.cst$kw$settings);
-var map__11128 = settings;
-var map__11128__$1 = ((((!((map__11128 == null)))?((((map__11128.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11128.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11128):map__11128);
-var stale_species = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11128__$1,cljs.core.cst$kw$stale_DASH_species);
-var survived = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (map__11127,map__11127__$1,spp,max_fitness,settings,map__11128,map__11128__$1,stale_species){
-return (function (p__11131){
-var map__11132 = p__11131;
-var map__11132__$1 = ((((!((map__11132 == null)))?((((map__11132.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11132.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11132):map__11132);
-var staleness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11132__$1,cljs.core.cst$kw$staleness);
-var top_fitness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11132__$1,cljs.core.cst$kw$top_DASH_fitness);
+var map__11135 = pool;
+var map__11135__$1 = ((((!((map__11135 == null)))?((((map__11135.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11135.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11135):map__11135);
+var spp = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11135__$1,cljs.core.cst$kw$species);
+var max_fitness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11135__$1,cljs.core.cst$kw$max_DASH_fitness);
+var settings = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11135__$1,cljs.core.cst$kw$settings);
+var map__11136 = settings;
+var map__11136__$1 = ((((!((map__11136 == null)))?((((map__11136.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11136.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11136):map__11136);
+var stale_species = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11136__$1,cljs.core.cst$kw$stale_DASH_species);
+var survived = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (map__11135,map__11135__$1,spp,max_fitness,settings,map__11136,map__11136__$1,stale_species){
+return (function (p__11139){
+var map__11140 = p__11139;
+var map__11140__$1 = ((((!((map__11140 == null)))?((((map__11140.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11140.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11140):map__11140);
+var staleness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11140__$1,cljs.core.cst$kw$staleness);
+var top_fitness = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11140__$1,cljs.core.cst$kw$top_DASH_fitness);
 return ((staleness < stale_species)) || ((top_fitness >= max_fitness));
-});})(map__11127,map__11127__$1,spp,max_fitness,settings,map__11128,map__11128__$1,stale_species))
+});})(map__11135,map__11135__$1,spp,max_fitness,settings,map__11136,map__11136__$1,stale_species))
 ,cljs.core.map.cljs$core$IFn$_invoke$arity$2(neat.pool.staleness,spp));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(pool,cljs.core.cst$kw$species,survived);
 });
 neat.pool.cull = (function neat$pool$cull(cut_to_one_QMARK_,pool){
 var survived = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (sp){
-var half = (function (){var G__11135 = (cljs.core.count(cljs.core.cst$kw$genomes.cljs$core$IFn$_invoke$arity$1(sp)) / (2));
-return Math.ceil(G__11135);
+var half = (function (){var G__11143 = (cljs.core.count(cljs.core.cst$kw$genomes.cljs$core$IFn$_invoke$arity$1(sp)) / (2));
+return Math.ceil(G__11143);
 })();
 var remaining = (cljs.core.truth_(cut_to_one_QMARK_)?(1):half);
 return cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(sp,cljs.core.cst$kw$genomes,cljs.core.partial.cljs$core$IFn$_invoke$arity$3(cljs.core.sort_by,cljs.core.cst$kw$fitness,cljs.core._GT_)),cljs.core.cst$kw$genomes,cljs.core.partial.cljs$core$IFn$_invoke$arity$2(cljs.core.take,remaining));
@@ -78,17 +78,17 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(pool,cljs.core.cst$kw$speci
 });
 neat.pool.cull_weak = (function neat$pool$cull_weak(pool){
 var pop = cljs.core.cst$kw$population.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$settings.cljs$core$IFn$_invoke$arity$1(pool));
-var ranked = (function (){var G__11141 = (neat.pool.ranked.cljs$core$IFn$_invoke$arity$1 ? neat.pool.ranked.cljs$core$IFn$_invoke$arity$1(pool) : neat.pool.ranked.call(null,pool));
-return (neat.pool.avg_rank.cljs$core$IFn$_invoke$arity$1 ? neat.pool.avg_rank.cljs$core$IFn$_invoke$arity$1(G__11141) : neat.pool.avg_rank.call(null,G__11141));
+var ranked = (function (){var G__11149 = (neat.pool.ranked.cljs$core$IFn$_invoke$arity$1 ? neat.pool.ranked.cljs$core$IFn$_invoke$arity$1(pool) : neat.pool.ranked.call(null,pool));
+return (neat.pool.avg_rank.cljs$core$IFn$_invoke$arity$1 ? neat.pool.avg_rank.cljs$core$IFn$_invoke$arity$1(G__11149) : neat.pool.avg_rank.call(null,G__11149));
 })();
 var total = (neat.pool.total_avg_rank.cljs$core$IFn$_invoke$arity$1 ? neat.pool.total_avg_rank.cljs$core$IFn$_invoke$arity$1(ranked) : neat.pool.total_avg_rank.call(null,ranked));
 var survived = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (pop,ranked,total){
-return (function (p__11142){
-var map__11143 = p__11142;
-var map__11143__$1 = ((((!((map__11143 == null)))?((((map__11143.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11143.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11143):map__11143);
-var avg_rank = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11143__$1,cljs.core.cst$kw$avg_DASH_rank);
-return ((function (){var G__11145 = ((avg_rank / total) * pop);
-return Math.floor(G__11145);
+return (function (p__11150){
+var map__11151 = p__11150;
+var map__11151__$1 = ((((!((map__11151 == null)))?((((map__11151.cljs$lang$protocol_mask$partition0$ & (64))) || (map__11151.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__11151):map__11151);
+var avg_rank = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__11151__$1,cljs.core.cst$kw$avg_DASH_rank);
+return ((function (){var G__11153 = ((avg_rank / total) * pop);
+return Math.floor(G__11153);
 })() >= (1));
 });})(pop,ranked,total))
 ,cljs.core.cst$kw$species.cljs$core$IFn$_invoke$arity$1(ranked));
@@ -126,8 +126,8 @@ neat.pool.fill_rand = (function neat$pool$fill_rand(pool,children){
 var children__$1 = children;
 while(true){
 if(((cljs.core.count(children__$1) + cljs.core.count(cljs.core.cst$kw$species.cljs$core$IFn$_invoke$arity$1(pool))) < cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(pool,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$settings,cljs.core.cst$kw$population], null)))){
-var G__11146 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(children__$1,neat.pool.rand_child(pool));
-children__$1 = G__11146;
+var G__11154 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(children__$1,neat.pool.rand_child(pool));
+children__$1 = G__11154;
 continue;
 } else {
 return children__$1;
@@ -137,25 +137,25 @@ break;
 });
 neat.pool.add_genome = (function neat$pool$add_genome(spp,genome){
 var acc = cljs.core.PersistentVector.EMPTY;
-var G__11152 = spp;
-var vec__11153 = G__11152;
-var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11153,(0),null);
-var spp__$1 = cljs.core.nthnext(vec__11153,(1));
+var G__11160 = spp;
+var vec__11161 = G__11160;
+var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11161,(0),null);
+var spp__$1 = cljs.core.nthnext(vec__11161,(1));
 var acc__$1 = acc;
-var G__11152__$1 = G__11152;
+var G__11160__$1 = G__11160;
 while(true){
 var acc__$2 = acc__$1;
-var vec__11154 = G__11152__$1;
-var sp__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11154,(0),null);
-var spp__$2 = cljs.core.nthnext(vec__11154,(1));
+var vec__11162 = G__11160__$1;
+var sp__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11162,(0),null);
+var spp__$2 = cljs.core.nthnext(vec__11162,(1));
 if(!((sp__$1 == null))){
 if(cljs.core.truth_(neat.genome.same_QMARK_(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(sp__$1,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$genomes,(0)], null)),genome))){
 return cljs.core.concat.cljs$core$IFn$_invoke$arity$2(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc__$2,cljs.core.update.cljs$core$IFn$_invoke$arity$4(sp__$1,cljs.core.cst$kw$genomes,cljs.core.conj,genome)),spp__$2);
 } else {
-var G__11155 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc__$2,sp__$1);
-var G__11156 = spp__$2;
-acc__$1 = G__11155;
-G__11152__$1 = G__11156;
+var G__11163 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(acc__$2,sp__$1);
+var G__11164 = spp__$2;
+acc__$1 = G__11163;
+G__11160__$1 = G__11164;
 continue;
 }
 } else {
@@ -182,46 +182,46 @@ var sum = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.c
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(sp,cljs.core.cst$kw$avg_DASH_rank,(sum / total));
 });
 neat.pool.fitness_vecs = (function neat$pool$fitness_vecs(pool){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,(function (){var iter__5333__auto__ = (function neat$pool$fitness_vecs_$_iter__11207(s__11208){
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,(function (){var iter__5333__auto__ = (function neat$pool$fitness_vecs_$_iter__11215(s__11216){
 return (new cljs.core.LazySeq(null,(function (){
-var s__11208__$1 = s__11208;
+var s__11216__$1 = s__11216;
 while(true){
-var temp__4425__auto__ = cljs.core.seq(s__11208__$1);
+var temp__4425__auto__ = cljs.core.seq(s__11216__$1);
 if(temp__4425__auto__){
-var s__11208__$2 = temp__4425__auto__;
-if(cljs.core.chunked_seq_QMARK_(s__11208__$2)){
-var c__5331__auto__ = cljs.core.chunk_first(s__11208__$2);
+var s__11216__$2 = temp__4425__auto__;
+if(cljs.core.chunked_seq_QMARK_(s__11216__$2)){
+var c__5331__auto__ = cljs.core.chunk_first(s__11216__$2);
 var size__5332__auto__ = cljs.core.count(c__5331__auto__);
-var b__11210 = cljs.core.chunk_buffer(size__5332__auto__);
-if((function (){var i__11209 = (0);
+var b__11218 = cljs.core.chunk_buffer(size__5332__auto__);
+if((function (){var i__11217 = (0);
 while(true){
-if((i__11209 < size__5332__auto__)){
-var vec__11235 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto__,i__11209);
-var sidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11235,(0),null);
-var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11235,(1),null);
-cljs.core.chunk_append(b__11210,(function (){var iter__5333__auto__ = ((function (i__11209,vec__11235,sidx,sp,c__5331__auto__,size__5332__auto__,b__11210,s__11208__$2,temp__4425__auto__){
-return (function neat$pool$fitness_vecs_$_iter__11207_$_iter__11236(s__11237){
-return (new cljs.core.LazySeq(null,((function (i__11209,vec__11235,sidx,sp,c__5331__auto__,size__5332__auto__,b__11210,s__11208__$2,temp__4425__auto__){
+if((i__11217 < size__5332__auto__)){
+var vec__11243 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto__,i__11217);
+var sidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11243,(0),null);
+var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11243,(1),null);
+cljs.core.chunk_append(b__11218,(function (){var iter__5333__auto__ = ((function (i__11217,vec__11243,sidx,sp,c__5331__auto__,size__5332__auto__,b__11218,s__11216__$2,temp__4425__auto__){
+return (function neat$pool$fitness_vecs_$_iter__11215_$_iter__11244(s__11245){
+return (new cljs.core.LazySeq(null,((function (i__11217,vec__11243,sidx,sp,c__5331__auto__,size__5332__auto__,b__11218,s__11216__$2,temp__4425__auto__){
 return (function (){
-var s__11237__$1 = s__11237;
+var s__11245__$1 = s__11245;
 while(true){
-var temp__4425__auto____$1 = cljs.core.seq(s__11237__$1);
+var temp__4425__auto____$1 = cljs.core.seq(s__11245__$1);
 if(temp__4425__auto____$1){
-var s__11237__$2 = temp__4425__auto____$1;
-if(cljs.core.chunked_seq_QMARK_(s__11237__$2)){
-var c__5331__auto____$1 = cljs.core.chunk_first(s__11237__$2);
+var s__11245__$2 = temp__4425__auto____$1;
+if(cljs.core.chunked_seq_QMARK_(s__11245__$2)){
+var c__5331__auto____$1 = cljs.core.chunk_first(s__11245__$2);
 var size__5332__auto____$1 = cljs.core.count(c__5331__auto____$1);
-var b__11239 = cljs.core.chunk_buffer(size__5332__auto____$1);
-if((function (){var i__11238 = (0);
+var b__11247 = cljs.core.chunk_buffer(size__5332__auto____$1);
+if((function (){var i__11246 = (0);
 while(true){
-if((i__11238 < size__5332__auto____$1)){
-var vec__11244 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto____$1,i__11238);
-var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11244,(0),null);
-var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11244,(1),null);
-cljs.core.chunk_append(b__11239,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null));
+if((i__11246 < size__5332__auto____$1)){
+var vec__11252 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto____$1,i__11246);
+var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11252,(0),null);
+var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11252,(1),null);
+cljs.core.chunk_append(b__11247,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null));
 
-var G__11257 = (i__11238 + (1));
-i__11238 = G__11257;
+var G__11265 = (i__11246 + (1));
+i__11246 = G__11265;
 continue;
 } else {
 return true;
@@ -229,30 +229,30 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__11239),neat$pool$fitness_vecs_$_iter__11207_$_iter__11236(cljs.core.chunk_rest(s__11237__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__11247),neat$pool$fitness_vecs_$_iter__11215_$_iter__11244(cljs.core.chunk_rest(s__11245__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__11239),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__11247),null);
 }
 } else {
-var vec__11245 = cljs.core.first(s__11237__$2);
-var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11245,(0),null);
-var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11245,(1),null);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null),neat$pool$fitness_vecs_$_iter__11207_$_iter__11236(cljs.core.rest(s__11237__$2)));
+var vec__11253 = cljs.core.first(s__11245__$2);
+var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11253,(0),null);
+var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11253,(1),null);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null),neat$pool$fitness_vecs_$_iter__11215_$_iter__11244(cljs.core.rest(s__11245__$2)));
 }
 } else {
 return null;
 }
 break;
 }
-});})(i__11209,vec__11235,sidx,sp,c__5331__auto__,size__5332__auto__,b__11210,s__11208__$2,temp__4425__auto__))
+});})(i__11217,vec__11243,sidx,sp,c__5331__auto__,size__5332__auto__,b__11218,s__11216__$2,temp__4425__auto__))
 ,null,null));
-});})(i__11209,vec__11235,sidx,sp,c__5331__auto__,size__5332__auto__,b__11210,s__11208__$2,temp__4425__auto__))
+});})(i__11217,vec__11243,sidx,sp,c__5331__auto__,size__5332__auto__,b__11218,s__11216__$2,temp__4425__auto__))
 ;
 return iter__5333__auto__(cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,cljs.core.cst$kw$genomes.cljs$core$IFn$_invoke$arity$1(sp)));
 })());
 
-var G__11258 = (i__11209 + (1));
-i__11209 = G__11258;
+var G__11266 = (i__11217 + (1));
+i__11217 = G__11266;
 continue;
 } else {
 return true;
@@ -260,37 +260,37 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__11210),neat$pool$fitness_vecs_$_iter__11207(cljs.core.chunk_rest(s__11208__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__11218),neat$pool$fitness_vecs_$_iter__11215(cljs.core.chunk_rest(s__11216__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__11210),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__11218),null);
 }
 } else {
-var vec__11246 = cljs.core.first(s__11208__$2);
-var sidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11246,(0),null);
-var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11246,(1),null);
-return cljs.core.cons((function (){var iter__5333__auto__ = ((function (vec__11246,sidx,sp,s__11208__$2,temp__4425__auto__){
-return (function neat$pool$fitness_vecs_$_iter__11207_$_iter__11247(s__11248){
-return (new cljs.core.LazySeq(null,((function (vec__11246,sidx,sp,s__11208__$2,temp__4425__auto__){
+var vec__11254 = cljs.core.first(s__11216__$2);
+var sidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11254,(0),null);
+var sp = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11254,(1),null);
+return cljs.core.cons((function (){var iter__5333__auto__ = ((function (vec__11254,sidx,sp,s__11216__$2,temp__4425__auto__){
+return (function neat$pool$fitness_vecs_$_iter__11215_$_iter__11255(s__11256){
+return (new cljs.core.LazySeq(null,((function (vec__11254,sidx,sp,s__11216__$2,temp__4425__auto__){
 return (function (){
-var s__11248__$1 = s__11248;
+var s__11256__$1 = s__11256;
 while(true){
-var temp__4425__auto____$1 = cljs.core.seq(s__11248__$1);
+var temp__4425__auto____$1 = cljs.core.seq(s__11256__$1);
 if(temp__4425__auto____$1){
-var s__11248__$2 = temp__4425__auto____$1;
-if(cljs.core.chunked_seq_QMARK_(s__11248__$2)){
-var c__5331__auto__ = cljs.core.chunk_first(s__11248__$2);
+var s__11256__$2 = temp__4425__auto____$1;
+if(cljs.core.chunked_seq_QMARK_(s__11256__$2)){
+var c__5331__auto__ = cljs.core.chunk_first(s__11256__$2);
 var size__5332__auto__ = cljs.core.count(c__5331__auto__);
-var b__11250 = cljs.core.chunk_buffer(size__5332__auto__);
-if((function (){var i__11249 = (0);
+var b__11258 = cljs.core.chunk_buffer(size__5332__auto__);
+if((function (){var i__11257 = (0);
 while(true){
-if((i__11249 < size__5332__auto__)){
-var vec__11255 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto__,i__11249);
-var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11255,(0),null);
-var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11255,(1),null);
-cljs.core.chunk_append(b__11250,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null));
+if((i__11257 < size__5332__auto__)){
+var vec__11263 = cljs.core._nth.cljs$core$IFn$_invoke$arity$2(c__5331__auto__,i__11257);
+var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11263,(0),null);
+var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11263,(1),null);
+cljs.core.chunk_append(b__11258,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null));
 
-var G__11259 = (i__11249 + (1));
-i__11249 = G__11259;
+var G__11267 = (i__11257 + (1));
+i__11257 = G__11267;
 continue;
 } else {
 return true;
@@ -298,27 +298,27 @@ return true;
 break;
 }
 })()){
-return cljs.core.chunk_cons(cljs.core.chunk(b__11250),neat$pool$fitness_vecs_$_iter__11207_$_iter__11247(cljs.core.chunk_rest(s__11248__$2)));
+return cljs.core.chunk_cons(cljs.core.chunk(b__11258),neat$pool$fitness_vecs_$_iter__11215_$_iter__11255(cljs.core.chunk_rest(s__11256__$2)));
 } else {
-return cljs.core.chunk_cons(cljs.core.chunk(b__11250),null);
+return cljs.core.chunk_cons(cljs.core.chunk(b__11258),null);
 }
 } else {
-var vec__11256 = cljs.core.first(s__11248__$2);
-var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11256,(0),null);
-var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11256,(1),null);
-return cljs.core.cons(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null),neat$pool$fitness_vecs_$_iter__11207_$_iter__11247(cljs.core.rest(s__11248__$2)));
+var vec__11264 = cljs.core.first(s__11256__$2);
+var gidx = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11264,(0),null);
+var genome = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11264,(1),null);
+return cljs.core.cons(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [sidx,gidx], null),cljs.core.cst$kw$fitness.cljs$core$IFn$_invoke$arity$1(genome)], null),neat$pool$fitness_vecs_$_iter__11215_$_iter__11255(cljs.core.rest(s__11256__$2)));
 }
 } else {
 return null;
 }
 break;
 }
-});})(vec__11246,sidx,sp,s__11208__$2,temp__4425__auto__))
+});})(vec__11254,sidx,sp,s__11216__$2,temp__4425__auto__))
 ,null,null));
-});})(vec__11246,sidx,sp,s__11208__$2,temp__4425__auto__))
+});})(vec__11254,sidx,sp,s__11216__$2,temp__4425__auto__))
 ;
 return iter__5333__auto__(cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,cljs.core.cst$kw$genomes.cljs$core$IFn$_invoke$arity$1(sp)));
-})(),neat$pool$fitness_vecs_$_iter__11207(cljs.core.rest(s__11208__$2)));
+})(),neat$pool$fitness_vecs_$_iter__11215(cljs.core.rest(s__11216__$2)));
 }
 } else {
 return null;
@@ -341,12 +341,12 @@ neat.pool.ranked = (function neat$pool$ranked(pool){
 var ranks = cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.first,cljs.core.sort_by.cljs$core$IFn$_invoke$arity$3(cljs.core.second,cljs.core._LT_,neat.pool.fitness_vecs(pool))));
 var pool_STAR_ = neat.pool.vec_pool(pool);
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (ranks,pool_STAR_){
-return (function (pool__$1,p__11263){
-var vec__11264 = p__11263;
-var rank = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11264,(0),null);
-var vec__11265 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11264,(1),null);
-var sp_n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11265,(0),null);
-var gnm_n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11265,(1),null);
+return (function (pool__$1,p__11271){
+var vec__11272 = p__11271;
+var rank = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11272,(0),null);
+var vec__11273 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11272,(1),null);
+var sp_n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11273,(0),null);
+var gnm_n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__11273,(1),null);
 return cljs.core.assoc_in(pool__$1,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$species,sp_n,cljs.core.cst$kw$genomes,gnm_n,cljs.core.cst$kw$rank], null),rank);
 });})(ranks,pool_STAR_))
 ,pool_STAR_,ranks);
