@@ -34,7 +34,15 @@
                                         :source-map    "resources/public/js/out.js.map"
                                         :preamble      ["react/react.min.js"]
                                         :optimizations :none
-                                        :pretty-print  true}}}}
+                                        :pretty-print  true}}
+                       :floppy {:source-paths ["src/cljs" "env/prod/cljs"]
+                                :compiler {:output-to     "examples/floppy/js/app.js"
+                                           :output-dir    "examples/floppy/js/out"
+                                           :source-map    "examples/floppy/js/out.js.map"
+                                           :preamble      ["react/react.min.js"]
+                                           :externs       ["externs/floppy.js"]
+                                           :optimizations :advanced
+                                           :pretty-print  false}}}}
 
   :profiles {:dev {:source-paths ["env/dev/clj"]
                    :test-paths ["test/clj"]

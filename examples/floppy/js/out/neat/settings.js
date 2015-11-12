@@ -1,0 +1,9 @@
+// Compiled by ClojureScript 1.7.122 {:static-fns true, :optimize-constants true}
+goog.provide('neat.settings');
+goog.require('cljs.core');
+neat.settings.delta = new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$disjunct,2.0,cljs.core.cst$kw$weights,0.4,cljs.core.cst$kw$threshold,1.0], null);
+neat.settings.default_mutate = new cljs.core.PersistentArrayMap(null, 8, [cljs.core.cst$kw$connections,0.25,cljs.core.cst$kw$link,2.0,cljs.core.cst$kw$bias,0.4,cljs.core.cst$kw$node,0.5,cljs.core.cst$kw$enable,0.2,cljs.core.cst$kw$disable,0.4,cljs.core.cst$kw$step,0.1,cljs.core.cst$kw$perturb,0.9], null);
+neat.settings.default_settings = new cljs.core.PersistentArrayMap(null, 6, [cljs.core.cst$kw$stale_DASH_species,(15),cljs.core.cst$kw$population,(10),cljs.core.cst$kw$inputs,(26),cljs.core.cst$kw$outputs,(12),cljs.core.cst$kw$max_DASH_nodes,(200),cljs.core.cst$kw$crossover,0.5], null);
+neat.settings.default_genome = new cljs.core.PersistentArrayMap(null, 7, [cljs.core.cst$kw$genes,cljs.core.PersistentVector.EMPTY,cljs.core.cst$kw$fitness,(0),cljs.core.cst$kw$network,cljs.core.PersistentArrayMap.EMPTY,cljs.core.cst$kw$max_DASH_neurons,cljs.core.cst$kw$inputs.cljs$core$IFn$_invoke$arity$1(neat.settings.default_settings),cljs.core.cst$kw$rank,(0),cljs.core.cst$kw$mutate,neat.settings.default_mutate,cljs.core.cst$kw$settings,neat.settings.default_settings], null);
+neat.settings.default_pool = new cljs.core.PersistentArrayMap(null, 7, [cljs.core.cst$kw$species,cljs.core.PersistentVector.EMPTY,cljs.core.cst$kw$generation,(0),cljs.core.cst$kw$current_DASH_species,(0),cljs.core.cst$kw$current_DASH_genome,(0),cljs.core.cst$kw$frame,(0),cljs.core.cst$kw$max_DASH_fitness,(0),cljs.core.cst$kw$settings,null], null);
+neat.settings.default_sp = new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$top_DASH_fitness,(0),cljs.core.cst$kw$staleness,(0),cljs.core.cst$kw$genomes,cljs.core.PersistentVector.EMPTY,cljs.core.cst$kw$avg_DASH_rank,(0)], null);

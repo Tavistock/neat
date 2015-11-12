@@ -1,0 +1,23 @@
+h1 {
+  text-decoration: underline;
+}
+
+#app {
+  color: black;
+}
+
+circle.neg {
+    fill: red;
+}
+
+circle.zero {
+    fill: white;
+}
+
+circle.pos {
+    fill: green;
+}
+
+svg.vision {
+    backGround-color: grey;
+}
