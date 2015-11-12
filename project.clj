@@ -83,5 +83,4 @@
                                             {:source-paths ["env/prod/cljs"]
                                              :compiler
                                              {:optimizations :advanced
-                                              :pretty-print false
-                                              :externs ["resources/public/floppy/js/main.js"]}}}}}})
+                                              :pretty-print false}}}}}})
