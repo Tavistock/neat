@@ -14,10 +14,10 @@ of inputs to vector of outputs.
 
 ## Example
 
-An example is included that evolves a genome. Just use (run) in a local repl
-and point your browser at [localhost:10555/floppy](http://localhost:10555/floppy).
+[An example is included that evolves a genome!](http://tavistock.github.io/neat/examples/floppy)
 
-![](floppy.gif)
+![roof-hug](floppy.gif)
+
 Be warned it takes a few generations to stop hugging the roof!
 
 ## License
