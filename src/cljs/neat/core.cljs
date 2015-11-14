@@ -31,30 +31,71 @@
         y  (-> y* (mod height))]
     [x y]))
 
+(defn classify
+  [v]
+  (if (nil? v) "nil"
+      (condp = (compare v 0)
+        0 "zero"
+        1 "pos"
+        -1 "neg")))
+
+(defn link [[[x1 y1] [x2 y2] :as locs] weight]
+  (html [:line {:key locs
+                :x1 x1 :y1 y1
+                :x2 x2 :y2 y2
+                :class (classify weight)}]))
+
+(defn node [[x y :as loc] scale value]
+  (html [:rect {:key loc
+                :x x :y y
+                :width scale :height scale
+                :class (classify value)}]))
+
+(defn link-info
+  [locations]
+  (->> locations
+       (mapcat
+        (fn [[loc neuron]]
+          (->> (:incoming neuron)
+               (filter identity)
+               (map
+                (fn [income]
+                  [[loc (:into income)] (:weight income)])))))))
+
 (defn network-comp [data owner]
   (reify
+    om/IShouldUpdate
+    ;; updating this is expensive so do it every 5 frames
+    (should-update [_ next-props _]
+      (= (mod (:frame (:ui next-props)) 5) 0))
     om/IRender
     (render [_]
       (let [{:keys [network ui]} data
             {:keys [width scale]} ui
             {:keys [neurons settings]} network
             {:keys [inputs max-nodes]} settings
-            vision (dec inputs)
+            column (dec inputs)
             scaler (fn [n] (+ (* n scale) scale))
-            type (fn [v] (condp = (compare v 0) 0 "zero" 1 "pos" -1 "neg"))
-            located (->> neurons (map :value) (map-indexed vector))
-            height (-> vision (quot width))]
+            locations (map-indexed vector neurons)
+            height (quot column width)
+            links (link-info locations)
+            total-width (* width (Math/ceil (/ (count neurons)
+                                               (* height width))))
+            scaled (fn [n](->> n
+                              (mapcat (fn [x] (loc->grid x width height)))
+                              (map scaler)
+                              (partition 2)))]
         (html
          [:svg {:class "vision"
-                :width  (scaler (* width (inc (quot (count neurons) (* height width)))))
-                :height (scaler height)}
-          (for [[loc v] located]
-            (let [[x y] (->> (loc->grid loc width height)
-                             (map scaler))
-                  class (type v)]
-                  [:circle
-                   {:cx x :cy y :r (quot scale 3) :class class}
-                   nil]))])))))
+                :width  (+ scale (scaler total-width))
+                :height (+ scale (scaler height))}
+          (for [[loc neuron] locations]
+            (let [[coord] (scaled (list loc))
+                  value (:value neuron)]
+              (node coord scale value)))
+          (for [[locs weight] links]
+            (let [scaled-locs (scaled locs)]
+              (link scaled-locs weight)))])))))
 
 (defn hud [app owner]
   (reify
@@ -65,8 +106,7 @@
                     pool network
                     ui]} app
             [_ sp-n _ gn-n] loc
-            {:keys [generation species]} pool
-            app-vision {:inputs inputs}]
+            {:keys [generation species]} pool]
         (html [:div
                [:p (str "Current =>")]
                [:p (str "Species: (" (inc sp-n) "/"(count species) ")" )]
