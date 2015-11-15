@@ -6,16 +6,33 @@ h1 {
   color: black;
 }
 
-circle.neg {
-    fill: red;
+rect {
+    stroke-width: 0;
 }
 
-circle.zero {
+.nil {
+    fill: transparent;
+    stroke: transparent;
+}
+
+line {
+    stroke-width: 2;
+    stroke-opacity: 0.2;
+}
+
+.neg {
+    fill: black;
+    stroke: red;
+}
+
+.zero {
+    fill: slategrey;
+    stroke: white;
+}
+
+.pos {
     fill: white;
-}
-
-circle.pos {
-    fill: green;
+    stroke: green;
 }
 
 svg.vision {
